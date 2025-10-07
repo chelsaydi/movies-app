@@ -1,0 +1,13 @@
+{% extends "videos/base.html" %}
+{% block title %}{{ video.title }} · Video Store{% endblock %}
+{% block content %}
+<h2>{{ video.title }} ({{ video.release_year }})</h2>
+<p>ID: {{ video.movie_id }}</p>
+<p>Actor1: {{ video.actor1 }} | Actor2: {{ video.actor2 }}</p>
+<p>Director: {{ video.director }} | Genre: {{ video.genre }}</p>
+<div class="actions">
+  <a class="btn" href="{% url 'videos:update' video.pk %}">Edit</a>
+  <a class="btn btn-danger" href="{% url 'videos:delete' video.pk %}">Delete</a>
+  <a class="btn btn-outline" href="{% url 'videos:list' %}">Back</a>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "videos/base.html" %}
+{% block title %}{{ mode }} Video · Video Store{% endblock %}
+{% block content %}
+<h2>{{ mode }} Video</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn">{{ mode }}</button>
+  <a class="btn btn-outline" href="{% url 'videos:list' %}">Cancel</a>
+</form>
+{% endblock %}

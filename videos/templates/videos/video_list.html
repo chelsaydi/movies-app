@@ -1,0 +1,44 @@
+{% extends "videos/base.html" %}
+{% block title %}All Videos · Video Store{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="mb-0">All Videos</h2>
+  <a class="btn" href="{% url 'videos:create' %}">+ Add Video</a>
+</div>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>MovieID</th>
+        <th>MovieTitle</th>
+        <th>Actor1</th>
+        <th>Actor2</th>
+        <th>Director</th>
+        <th>Genre</th>
+        <th>Year</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for v in videos %}
+      <tr>
+        <td>{{ v.movie_id }}</td>
+        <td><a href="{% url 'videos:detail' v.pk %}">{{ v.title }}</a></td>
+        <td>{{ v.actor1 }}</td>
+        <td>{{ v.actor2 }}</td>
+        <td>{{ v.director }}</td>
+        <td>{{ v.genre }}</td>
+        <td>{{ v.release_year }}</td>
+        <td class="text-nowrap">
+          <a class="btn btn-sm btn-outline-primary" href="{% url 'videos:update' v.pk %}">Edit</a>
+          <a class="btn btn-sm btn-outline-danger" href="{% url 'videos:delete' v.pk %}">Delete</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="8" class="text-center text-muted">No videos yet.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
